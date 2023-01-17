@@ -8,3 +8,5 @@ get product details : http://localhost:4000/api/v1/products/63bd0c3251ab869e7
 
 Serarch/Filter : http://localhost:4000/api/v1//products/?keyword=Product1&price[gt]=900&price[lt]=10000
 
+
+Pagination: http://localhost:4000/api/v1/products?page=3

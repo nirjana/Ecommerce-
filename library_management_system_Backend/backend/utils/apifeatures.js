@@ -28,7 +28,6 @@ class ApiFeatures {
 
     removeFields.forEach((key) => delete queryCopy[key]);
 
-
     //filter for Price and Rating
     console.log(queryCopy);
 
@@ -41,7 +40,17 @@ class ApiFeatures {
 
     console.log(queryStr);
 
+    return this;
+  }
 
+  pagination(resultPerPage) {
+    //parameter = resultPerPage
+    const currentPage = Number(this.querystr.page) || 1; //queryStr is string so we need to change it to number
+    const skip = resultPerPage * (currentPage - 1);
+    //examples: First page , currentpage= 1 ,resultperpage = 10 , skip = 10 (1-1) =0 , skip = 0
+    // second page  currentpage= 2 , resultperpage = 10 , skip = 10 (2-1) =0 , skip = 10
+
+    this.query = this.query.limit(resultPerPage).skip(skip);
     return this;
   }
 }
