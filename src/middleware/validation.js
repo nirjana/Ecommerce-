@@ -1,3 +1,8 @@
+/**
+ * 
+ * @param {object} schema 
+ * @returns 
+ */
 function validateBody(schema) {
     return function (req, res, next) {
         try {
@@ -9,4 +14,4 @@ function validateBody(schema) {
             next(err);
         }
     }
-}
+} 
