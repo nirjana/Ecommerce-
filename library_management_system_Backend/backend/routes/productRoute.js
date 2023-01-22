@@ -1,12 +1,22 @@
 const express = require("express");
-const { getAllProducts ,createProduct,updateProduct, deleteProduct, getProductDetails} = require("../controllers/productController");
+const {
+  getAllProducts,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  getProductDetails,
+} = require("../controllers/productController");
+const { loginWithCookie } = require("../controllers/userController");
 const router = express.Router();
 
-router.route("/products").get(getAllProducts); //get request
+router.route("/products").get(loginWithCookie, getAllProducts); //get request
+// router.route("/products").get(getAllProducts); //get request
+router.route("/products/new").post(loginWithCookie, createProduct);
 
-router.route("/products/new").post(createProduct); 
+router
+  .route("/products/:id")
+  .put(loginWithCookie, updateProduct)
+  .delete(loginWithCookie, deleteProduct)
+  .get(getProductDetails);
 
-router.route("/products/:id").put(updateProduct).delete(deleteProduct).get(getProductDetails)
-
-
-module.exports = router ;
+module.exports = router;
