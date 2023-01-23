@@ -1,6 +1,7 @@
 import {Router} from 'express';
 // import * as bookController from "./controllers/books.js"
 import * as adminController from "./controllers/adminController.js";
+import * as userController from "./controllers/userController.js";
 import addAdminSchema from "./schemas/addAdmin.js"
 import { validateBody } from './middleware/validation.js';
 import authenticate from './middleware/authenticate.js';
@@ -20,6 +21,8 @@ router.patch('/:adminIdentifier',adminController.updateAdmin)
 router.delete('/:adminIdentifier',adminController.deleteAdmin)
 
 router.post('/adminLogin', adminController.login)
+
+router.post('/userRegister',userController.registerUser)
 
 // router.post('/', bookController.addBook)
 

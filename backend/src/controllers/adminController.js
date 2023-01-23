@@ -54,3 +54,11 @@ export function login(req, res, next) {
       .catch((err) => next(err));
   }
 
+export function registerAdmin(req,res,next) {
+    const{name,email,password} = req.body;
+    adminService
+    .registerAdmin(req.body)
+    .then((data) => res.json(data))
+    .catch((err) => next(err));
+}
+

@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
+import * as dotenv from "dotenv";
+dotenv.config({path : '../.env'});
 
 export const connectDatabase = () => {
-let uri = "mongodb://localhost:27017/Librarydb";
+let uri = process.env.DB_URI;
 mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true });
 const connection = mongoose.connection;
 connection.once("open", function (err) {

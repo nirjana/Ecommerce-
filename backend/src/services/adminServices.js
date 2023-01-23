@@ -1,4 +1,5 @@
 import Boom from "@hapi/boom";
+import { registerAdmin } from "../controllers/adminController.js";
 
 import Admin from "../models/adminModel.js"
 import { hash, compare, createToken } from '../utils/crypt.js';
@@ -85,3 +86,4 @@ export async function login(params) {
       message: 'Admin Logged in succesfully',
     };
   }
+
