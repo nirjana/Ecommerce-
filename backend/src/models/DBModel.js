@@ -1,4 +1,3 @@
-
 class DBModel {
   constructor(model) {
     this.model = model;
@@ -19,6 +18,8 @@ class DBModel {
   async updateById(id, data) {
     const returnedData = await this.model.findOneAndUpdate({ _id: id }, data, {
       new: true,
+      runValidator: true,
+      useFindAndModify: false,
     });
 
     return returnedData;
@@ -26,6 +27,16 @@ class DBModel {
 
   async deleteById(id) {
     let doc = await Admin.findOne({ _id: id });
+    const returnedData = await this.model.deleteOne({ _id: id });
+    if (returnedData === 1) {
+      return doc;
+    } else {
+      return "no doc found";
+    }
+  }
+
+  async deleteProductById(id) {
+    let doc = await this.model.findOne({ _id: id });
     const returnedData = await this.model.deleteOne({ _id: id });
     if (returnedData === 1) {
       return doc;
@@ -45,6 +56,18 @@ class DBModel {
     const returnedData = await this.model
       .findOne({ email: email })
       .select("+password");
+    return returnedData;
+  }
+
+  async findproductById(id) {
+    const returnedData = await this.model.findById({ _id: id });
+
+    return returnedData;
+  }
+
+  async findAllProduct() {
+    const returnedData = await this.model.find();
+
     return returnedData;
   }
 }
