@@ -26,7 +26,7 @@ class DBModel {
     }
 
     async deleteById(id) {
-            let doc = await Admin.findOne(
+            let doc = await this.model.findOne(
         { _id:id }
     );
         const returnedData = await this.model.deleteOne(
@@ -42,7 +42,7 @@ class DBModel {
 
     async findByParams(data) {
         let returnedData = await this.model.findOne(data);
-        
+        console.log("returneddata",returnedData)
         return returnedData;
     }
     async findById(id) {

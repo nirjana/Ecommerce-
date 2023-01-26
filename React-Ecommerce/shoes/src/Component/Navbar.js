@@ -31,7 +31,7 @@ export const Navbar = () => {
             <li> <Link to ="/">Contact</Link></li>
             <li> <Link to ="/products"> Our Products </Link></li>
                                  {currentUser ? (
-                                    currentUser === 'customer'?
+                                    currentUser === 'user'?
                                     <>
                                 <Link to="/cart" >
                                      <i className="fa fa-shopping-cart ">  <li> <Link to ="/cart"> Cart({cartCount}) </Link></li> </i>

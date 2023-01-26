@@ -19,6 +19,7 @@ export async function createProduct(data) {
 //********************     Get all products   ********************//
 export async function getAllProducts() {
   const data = await new Product().getAll();
+  console.log("data ayauiuaia",data)
   if (!data) {
     console.log("Product not Found");
     throw Boom.badRequest("Product not Found");
@@ -69,8 +70,8 @@ export async function updateProduct(id, data) {
 
 //Delete Product
 export async function deleteProduct(id) {
-  const returnedData = await new Product().deleteProductById(id);
-
+  const returnedData = await new Product().deleteById(id);
+ 
   return {
     data: returnedData,
     message: "Succesfully deleted Product",

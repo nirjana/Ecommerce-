@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 const { ObjectId } = mongoose.Types;
 import DBModel from './DBModel.js';
+import validator from "validator";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const { Schema } = mongoose;
 
@@ -37,6 +40,35 @@ const adminSchema = new Schema({
 },
 }  
 ,{ timestamps: true });
+
+  //we cant use this function inside arrow function=>()so we use function
+  adminSchema.pre("save",async function(next){
+
+    if (!this.isModified("password")) {
+      //passsword is not  modified then dont hash the password again
+      next();
+    }
+    //change password case
+    this.password = await bcrypt.hash(this.password, 10); //10 indicate the password is strong
+  })
+  
+  
+  //use of JWT token
+  adminSchema.methods.getJWTToken =  function(){
+    return jwt.sign({id:this._id},process.env.JWT_SECRET,{
+      expiresIn: 5,                        //method of userSchema
+    })
+  }
+  
+  //compair the password 
+  
+  adminSchema.methods.comparePassword = async function(enteredPassword){
+    console.log("adkadkla",enteredPassword, this.password)
+    const abc = await bcrypt.compare(enteredPassword, this.password);
+    return abc
+    //  return bcrypt.compare(enteredPassword,hashed password which is in database already)
+  }
+  
 const adminModel = mongoose.model("admin",adminSchema);
 
 export default class Admin extends DBModel {

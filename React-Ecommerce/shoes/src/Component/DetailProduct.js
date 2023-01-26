@@ -5,6 +5,7 @@ import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import {useSelector,useDispatch} from "react-redux"
 import {addToCart} from "../redux/cartSlice.js"
+import * as productServices from "../services/index.js"
 
 const DetailProduct = () => {
     const {id} = useParams();

@@ -12,6 +12,7 @@ export function createProduct(req, res, next) {
 
 export function getAllProducts(req, res, next) {
   const product = req.params;
+  console.log("dsa",req.params)
   productService
     .getAllProducts(req.params)
     .then((data) => res.json(data))
@@ -21,6 +22,7 @@ export function getAllProducts(req, res, next) {
 
 export function getProductDetails(req, res, next) {
   const product = req.params.id;
+  console.log("k bhaaa")
   productService
     .getProductDetails(req.params.id)
     .then((data) => res.json(data))

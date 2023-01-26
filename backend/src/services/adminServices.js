@@ -50,7 +50,7 @@ export async function deleteAdminById(id) {
     }
 }
 
-/**
+  /**
  * Login validation and token generation.
  *
  * @param {Object} params
@@ -59,19 +59,33 @@ export async function deleteAdminById(id) {
 export async function login(params) {
     const { username, password } = params;
    console.log("uu",username,password,params)
-    const existingUser = await new Admin().findByParams(params);
+
+     if (!username || !password) {
+       return {
+         message: "Please enter username and password",
+       };
+          }
+
+
+    const existingUser = await new Admin().findByParams({username:params.username});
     console.log("exist",existingUser);
     if (!existingUser) {
    
       throw new Boom.badRequest('Invalid credentials');
     }
-    // const doesPasswordMatch = compare(password, existingUser.password);
-    // console.log(doesPasswordMatch)
-    // if (!doesPasswordMatch) {
-  
-    //   throw new Boom.badRequest('Invalid credentials');
-    // }
-  
+ 
+   const isPasswordMatched = await existingUser.comparePassword(password); //to check the input password with database ma vayeko password
+   console.log(isPasswordMatched + `PasswordMatched`);
+
+   if (!isPasswordMatched) {
+     return {
+       message: "Invalid email or (password)",
+     };
+
+     //  return next(new ErrorHander("Invalid email or password "), 401); //401 unauthorized
+   }
+
+    // const tokenJWT = existingUser.getJWTToken();
     const user = {
       id: existingUser.id,
       name: existingUser.name,
@@ -83,7 +97,7 @@ export async function login(params) {
   
     return {
       data: { token, user },
-      message: 'Admin Logged in succesfully',
+      message: "Admin Logged in succesfully",
     };
   }
 

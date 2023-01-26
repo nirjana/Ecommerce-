@@ -8,15 +8,15 @@ const Products = () => {
   const [products,setProducts] =useState("")
 
   useEffect(()=>{
-    fetch("https://shoes-back.onrender.com/products")
+    fetch("http://127.0.0.1:8000/products")
     .then(res => res.json())
     .then(data => {
       console.log("ddd",data)
-      setProducts(data)})
+      setProducts(data.data)})
   },[])
 
   const Delete = (id) => {
-    fetch(`https://shoes-back.onrender.com/products/${id}`, {
+    fetch(`http://127.0.0.1:8000/products/${id}`, {
       method: 'DELETE', 
       headers: {
         'Content-Type': 'application/json',
@@ -25,11 +25,11 @@ const Products = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
-        fetch("https://shoes-back.onrender.com/products")
+        fetch("http://127.0.0.1:8000/products")
         .then(res => res.json())
         .then(data => {
           console.log("ddd",data)
-          setProducts(data)})
+          setProducts(data.data)})
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -38,6 +38,7 @@ const Products = () => {
 
   return (
     <>
+    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 rounded"><Link to="/addproduct">Add Product</Link></button>
             <table>
               <tr>
                 <th>Product Name</th>
@@ -50,7 +51,7 @@ const Products = () => {
               {products && products.map((item,i) => {
                 return <>
                <tr key={item.i}>
-                <td>{item.title}</td>
+                <td>{item.name}</td>
                 <td>{item.description}</td>
                 <td>{item.price}</td>
                 <td>{item.stock}</td>

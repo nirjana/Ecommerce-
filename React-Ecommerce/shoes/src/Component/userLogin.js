@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('http://127.0.0.1:8000/customerLogin', {
+    fetch('http://127.0.0.1:8000/userLogin', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data.data.token);
-        if (data.data.token) {
+        if (data.data.user) {
           console.log('bhitra:', data);
           localStorage.setItem("user", JSON.stringify(data.data.user));
           navigate("/")

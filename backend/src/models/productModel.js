@@ -55,7 +55,7 @@ const productSchema = new Schema({
     required: [true, "please enter product category"],
   },
 
-  Stock: {
+  stock: {
     type: String,
     required: [true, "please enter product category"],
     maxLength: [4, "stock cannot exceed 4 characters"],

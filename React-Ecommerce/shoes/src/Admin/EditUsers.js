@@ -16,7 +16,7 @@ export default function EditUser() {
     event.preventDefault();
     alert(inputs);
     console.log(inputs)
-    fetch(`https://shoes-back.onrender.com/users/${id}`, {
+    fetch(`http://127.0.0.1:8000/users/${id}`, {
       method: 'PATCH', 
       headers: {
         'Content-Type': 'application/json',

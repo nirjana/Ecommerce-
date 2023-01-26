@@ -10,11 +10,10 @@ const Dashboard = () => {
 
   return (
     <>
-    <Navbar/>
     <div className='Dashboard flex flex-row'>
         <div className='categories'>
             <ul>
-                <li onClick={()=>setShow(true)}> <button>Shoes</button></li>
+                <li onClick={()=>setShow(true)}> <button>Products</button></li>
                 <li onClick={()=>setShow(false)}><button>Users</button></li>
             </ul>
         </div>
@@ -22,7 +21,6 @@ const Dashboard = () => {
             {show ? <Products/> : <Users/>}
         </div>
     </div>
-    <Footer/>
     </>
   )
 }

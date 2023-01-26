@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Link,useNavigate } from 'react-router-dom';
 
 export default function AddProduct() {
     const [title,setTitle] = useState("");
@@ -7,6 +10,7 @@ export default function AddProduct() {
     const [price,setPrice] =useState("");
     const [category,setCategory] =useState("");
     const [stock,setStock] = useState("");
+    const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,13 +24,21 @@ export default function AddProduct() {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
+        toast.success("Record Added Succesfully", {
+          position: toast.POSITION.TOP_CENTER
+        },{
+          icon: "🚀"
+        });
       })
       .catch((error) => {
+        toast.error(error.toString(), {
+          position: toast.POSITION.TOP_CENTER
+        });
         console.error('Error:', error);
       });
   }
 
-  return (
+  return (<>
     <form onSubmit={handleSubmit} className="shadow-xl mx-auto w-[300px]  p-[30px] mt-[40px] rounded-md">
       <h1 className="text-[30px] text-center mb-[20px]">Add Product</h1>
 
@@ -88,5 +100,7 @@ export default function AddProduct() {
         </div>
         <button type="submit" className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] text-white rounded-md bg-green-600" >Submit</button>
     </form>
+    <ToastContainer autoClose={4000}/>
+    </>
   )
 }

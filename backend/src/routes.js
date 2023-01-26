@@ -13,6 +13,8 @@ const router = Router();
 console.log("authbhitra786",process.env.TOKEN_SECRET)
 // router.get('/',(req,res,next) => {
 // res.send("hiii successful")})
+
+
 router.get('/',adminController.getAllAdmins)
 
 // router.post('/',authenticate,validateBody(addAdminSchema),adminController.addAdmin)
@@ -20,15 +22,23 @@ router.post('/login',adminController.login)
 
 router.post('/register',adminController.registerAdmin)
 
-router.patch('/:adminIdentifier',adminController.updateAdmin)
+router.put('/:adminIdentifier',adminController.updateAdmin)
 
 router.delete('/:adminIdentifier',adminController.deleteAdmin)
 
-router.post('/adminLogin', adminController.login)
+router.post('/userLogin',userController.login)
 
 router.post('/userRegister',userController.registerUser)
 
-// router.post('/', bookController.addBook)
+router.get("/users", userController.getAllUsers);
+
+router.put('/:userIdentifier',userController.updateUser)
+
+router.delete('/users/:userIdentifier',userController.deleteUser)
+
+router.get("/users/:userIdentifier", userController.getUserDetails);
+
+router.get("/products", productController.getAllProducts);
 
 router.post(
     "/products",
@@ -40,7 +50,6 @@ router.post(
   router.put("/products/:id", productController.updateProduct);
 
   router.delete("/products/:id", productController.deleteProduct);
-  
-  router.get("/products", productController.getAllProducts);
+
 
 export default router;
