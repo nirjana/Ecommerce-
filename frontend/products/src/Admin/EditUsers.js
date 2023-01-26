@@ -18,7 +18,7 @@ export default function EditUser() {
     event.preventDefault();
     alert(inputs);
     console.log(inputs)
-    fetch(`http://127.0.0.1:8000/users/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, {
       method: 'PATCH', 
       headers: {
         'Content-Type': 'application/json',

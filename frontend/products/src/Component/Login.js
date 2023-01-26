@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('http://127.0.0.1:8000/login', {
+    fetch(`${process.env.REACT_APP_API_URL}/login`, {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',

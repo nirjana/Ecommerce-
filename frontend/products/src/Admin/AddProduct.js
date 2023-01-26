@@ -14,7 +14,7 @@ export default function AddProduct() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('http://127.0.0.1:8000/products', {
+    fetch(`${process.env.REACT_APP_API_URL}/products`, {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',

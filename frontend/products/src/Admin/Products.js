@@ -8,7 +8,7 @@ const Products = () => {
   const [products,setProducts] =useState("")
 
   useEffect(()=>{
-    fetch("http://127.0.0.1:8000/products")
+    fetch(`${process.env.REACT_APP_API_URL}/products`)
     .then(res => res.json())
     .then(data => {
       console.log("ddd",data)
@@ -16,7 +16,7 @@ const Products = () => {
   },[])
 
   const Delete = (id) => {
-    fetch(`http://127.0.0.1:8000/products/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/products/${id}`, {
       method: 'DELETE', 
       headers: {
         'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ const Products = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
-        fetch("http://127.0.0.1:8000/products")
+        fetch(`${process.env.REACT_APP_API_URL}/products`)
         .then(res => res.json())
         .then(data => {
           console.log("ddd",data)

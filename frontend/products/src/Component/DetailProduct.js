@@ -14,7 +14,7 @@ const DetailProduct = () => {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        fetch(`http://127.0.0.1:8000/products/${id}`)
+        fetch(`${process.env.REACT_APP_API_URL}/products/${id}`)
         .then(res => res.json())
         .then(res => {
           console.log("this",res)

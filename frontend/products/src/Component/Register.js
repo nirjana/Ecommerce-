@@ -17,7 +17,7 @@ const Register = () => {
       event.preventDefault();
       if(password !== repassword)
       {console.log("error")} 
-      fetch('http://127.0.0.1:8000/register', {
+      fetch(`${process.env.REACT_APP_API_URL}/register`, {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',

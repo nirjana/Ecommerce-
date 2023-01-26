@@ -9,7 +9,7 @@ const Users = () => {
   const [users,setUsers] =useState("")
 
   useEffect(()=>{
-    fetch("http://127.0.0.1:8000/users")
+    fetch(`${process.env.REACT_APP_API_URL}/users`)
     .then(res => res.json())
     .then(data => {
       console.log("mathi",data)
@@ -17,7 +17,7 @@ const Users = () => {
   },[])
 
   const Delete = (id) => {
-    fetch(`http://127.0.0.1:8000/users/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, {
       method: 'DELETE', 
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ const Users = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data.data);
-        fetch("http://127.0.0.1:8000/users")
+        fetch(`${process.env.REACT_APP_API_URL}/users`)
         .then(res => res.json())
         .then(data => {
           console.log("ddd",data.data)

@@ -1,6 +1,6 @@
 import Boom from "@hapi/boom";
 
-import User from "../models/UserModel.js"
+import User from "../models/userModel.js"
 import { hash, compare, createToken } from '../utils/crypt.js';
 
 export async function registerUser(data) {
