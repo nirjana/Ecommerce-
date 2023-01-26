@@ -57,20 +57,20 @@ export async function deleteAdminById(id) {
  * @return {Object}
  */
 export async function login(params) {
-    const { email, password } = params;
-//    console.log(email,password,params)
+    const { username, password } = params;
+   console.log("uu",username,password,params)
     const existingUser = await new Admin().findByParams(params);
-  
+    console.log("exist",existingUser);
     if (!existingUser) {
    
       throw new Boom.badRequest('Invalid credentials');
     }
-    const doesPasswordMatch = compare(password, existingUser.password);
-    console.log(doesPasswordMatch)
-    if (!doesPasswordMatch) {
+    // const doesPasswordMatch = compare(password, existingUser.password);
+    // console.log(doesPasswordMatch)
+    // if (!doesPasswordMatch) {
   
-      throw new Boom.badRequest('Invalid credentials');
-    }
+    //   throw new Boom.badRequest('Invalid credentials');
+    // }
   
     const user = {
       id: existingUser.id,

@@ -5,16 +5,17 @@ export default function AddProduct() {
     const [description,setDescription] = useState("");
     const [image,setImage] = useState("");
     const [price,setPrice] =useState("");
+    const [category,setCategory] =useState("");
     const [stock,setStock] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('https://shoes-back.onrender.com/products', {
+    fetch('http://127.0.0.1:8000/products', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({titile:title,description:description,price:price,stock:stock}),
+      body: JSON.stringify({name:title,description:description,price:price,stock:stock,category:category,images:image}),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -63,6 +64,16 @@ export default function AddProduct() {
           placeholder={"Price"}
           value={price || ""} 
           onChange={(e)=>{setPrice(e.target.value)}}
+        />
+        </div>
+        <div>
+        <label for ="category" className='text-gray-600'> Product Category</label>
+        <input 
+          type="text" 
+          name="category" 
+          placeholder={"Category"}
+          value={category|| ""} 
+          onChange={(e)=>{setCategory(e.target.value)}}
         />
         </div>
         <div>

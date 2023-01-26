@@ -45,6 +45,11 @@ class DBModel {
         
         return returnedData;
     }
+    async findById(id) {
+        let returnedData = await this.model.findOne({_id:id});
+        
+        return returnedData;
+    }
 }
 
 export default DBModel;

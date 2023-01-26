@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('http://127.0.0.1:8000/login', {
+    fetch('http://127.0.0.1:8000/customerLogin', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',

@@ -7,7 +7,7 @@ const { Schema } = mongoose;
 const adminSchema = new Schema({
     id: {
         type: String,
-        required:true,
+        required:false,
         trim:true
     },
   name: {
@@ -22,7 +22,7 @@ const adminSchema = new Schema({
 },
   address:   {
     type: String,
-    required:true,
+    required:false,
     trim:true
 },
   password:{
@@ -32,7 +32,7 @@ const adminSchema = new Schema({
 },
   email:{
     type: String,
-    required:true,
+    required:false,
     trim:true
 },
 }  

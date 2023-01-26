@@ -1,7 +1,7 @@
 import * as adminService from "../services/adminServices.js"
 
 export function addAdmin(req, res, next) {
-    console.log(req.body)
+    console.log("yei ho",req.body)
     adminService.saveAdmin(req.body)
     .then ((data) => res.status(200).json(data))
     .catch((err) => {
@@ -56,8 +56,9 @@ export function login(req, res, next) {
 
 export function registerAdmin(req,res,next) {
     const{name,email,password} = req.body;
+    console.log("register",req.body)
     adminService
-    .registerAdmin(req.body)
+    .saveAdmin(req.body)
     .then((data) => res.json(data))
     .catch((err) => next(err));
 }

@@ -6,18 +6,19 @@ export default function EditProduct() {
   const [description,setDescription] = useState("");
   const [image,setImage] = useState("");
   const [price,setPrice] =useState("");
+  const [category,setCategory] =useState("");
   const [stock,setStock] = useState("");
   const {id} =useParams();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // fetch(`http://localhost:8000/products/${id}`, {
-      fetch(`https://shoes-back.onrender.com/products/${id}`, {
-      method: 'PATCH', 
+      fetch(`http://127.0.0.1:8000/products/${id}`, {
+      method: 'PUT', 
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({titile:title,description:description,price:price,stock:stock}),
+      body: JSON.stringify({name:title,description:description,price:price,stock:stock,category:category,images:image}),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -30,7 +31,7 @@ export default function EditProduct() {
 
   return (
     <form onSubmit={handleSubmit} className="shadow-xl mx-auto w-[300px]  p-[30px] mt-[40px] rounded-md">
-      <h1 className="text-[30px] text-center mb-[20px]">Add Product</h1>
+      <h1 className="text-[30px] text-center mb-[20px]">Edit Product</h1>
 
       <label for ="title" className='text-gray-600'> Product Name</label>
       <input 
@@ -66,6 +67,16 @@ export default function EditProduct() {
           placeholder={"Price"}
           value={price || ""} 
           onChange={(e)=>{setPrice(e.target.value)}}
+        />
+        </div>
+        <div>
+        <label for ="category" className='text-gray-600'> Product Category</label>
+        <input 
+          type="text" 
+          name="category" 
+          placeholder={"Category"}
+          value={category|| ""} 
+          onChange={(e)=>{setCategory(e.target.value)}}
         />
         </div>
         <div>
