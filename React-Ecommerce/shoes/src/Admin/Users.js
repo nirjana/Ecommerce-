@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { ToastContainer } from 'react-toastify';
+import * as notify from "../utils/notify.js"
 import "./admin.css";
 
 const Users = () => {
@@ -29,8 +31,10 @@ const Users = () => {
         .then(data => {
           console.log("ddd",data.data)
           setUsers(data.data)})
+          notify.success("deleted")
       })
       .catch((error) => {
+        notify.error(error)
         console.error('Error:', error);
       });
   }
@@ -57,6 +61,7 @@ const Users = () => {
                 </>
               })}
             </table>
+            <ToastContainer autoClose={4000}/>
     </>
   )
 }

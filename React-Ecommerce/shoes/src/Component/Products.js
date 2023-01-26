@@ -12,24 +12,24 @@ const Products = () => {
     console.log("this is state",state) 
     })
 
-  useEffect(()=>{
-    // fetch("https://api.escuelajs.co/api/v1/products")
-    fetch("http://127.0.0.1:8000/products",
-    {method: 'GET'})
-    .then(res => res.json())
-    .then(data => {
-      console.log("yo data",data)
-      setProducts(data.data)})
-    .catch(err => console.error(err))
-  },[])
   // useEffect(()=>{
-  //   axios.get("http://127.0.0.1:8000/products")
+  //   // fetch("https://api.escuelajs.co/api/v1/products")
+  //   fetch("http://127.0.0.1:8000/products",
+  //   {method: 'GET'})
   //   .then(res => res.json())
   //   .then(data => {
   //     console.log("yo data",data)
   //     setProducts(data.data)})
   //   .catch(err => console.error(err))
   // },[])
+  
+  useEffect(()=>{
+    axios.get("http://127.0.0.1:8000/products")
+    .then(data => {
+      console.log("yo data",data)
+      setProducts(data.data.data)})
+    .catch(err => console.error(err))
+  },[])
 
   return (
     <>

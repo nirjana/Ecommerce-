@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState} from 'react';
-import { Navbar } from './Navbar';
-import { Footer } from './Footer';
+import { ToastContainer } from 'react-toastify';
+import * as notify from "../utils/notify.js"
 
 const Register = () => {
   const [fullname,setFullname] = useState("");
@@ -25,8 +25,10 @@ const Register = () => {
         .then((response) => response.json())
         .then((data) => {
           console.log('Success:', data);
+          notify.success("registered user")
         })
         .catch((error) => {
+          notify.error(error)
           console.error('Error:', error);
         });
     }
@@ -47,7 +49,7 @@ const Register = () => {
             <input type="repassword" id="repassword" value={repassword} placeholder="Enter Password Again" onChange={(e)=>{setRepassword(e.target.value)}} className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md" />
             <button type="submit" className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] text-white rounded-md bg-green-600">REGISTER</button>
           </form>
-          <Footer/>
+          <ToastContainer autoClose={4000}/>
           </>
     )
 }

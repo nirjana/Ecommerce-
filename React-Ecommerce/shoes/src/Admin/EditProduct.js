@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { ToastContainer} from 'react-toastify';
+import * as notify from "../utils/notify.js"
 
 export default function EditProduct() {
   const [title,setTitle] = useState("");
@@ -23,13 +25,16 @@ export default function EditProduct() {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
+        notify.success("edited")
       })
       .catch((error) => {
+        notify.error(error)
         console.error('Error:', error);
       });
   }
 
   return (
+    <>
     <form onSubmit={handleSubmit} className="shadow-xl mx-auto w-[300px]  p-[30px] mt-[40px] rounded-md">
       <h1 className="text-[30px] text-center mb-[20px]">Edit Product</h1>
 
@@ -91,5 +96,7 @@ export default function EditProduct() {
         </div>
         <button type="submit" className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] text-white rounded-md bg-green-600" >Submit</button>
     </form>
+        <ToastContainer autoClose={4000}/>
+        </>
   )
 }

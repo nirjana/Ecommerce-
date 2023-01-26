@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Footer } from '../Component/Footer'
-import { Navbar } from '../Component/Navbar'
 import { useState } from 'react'
+import { ToastContainer } from 'react-toastify';
+import * as notify from "../utils/notify.js"
 
 const Products = () => {
   const [products,setProducts] =useState("")
@@ -30,8 +30,10 @@ const Products = () => {
         .then(data => {
           console.log("ddd",data)
           setProducts(data.data)})
+          notify.success("deleted")
       })
       .catch((error) => {
+        notify.error(error)
         console.error('Error:', error);
       });
   }
@@ -61,6 +63,7 @@ const Products = () => {
                 </>
               })}
             </table>
+            <ToastContainer autoClose={4000}/>
     </>
   )
 }

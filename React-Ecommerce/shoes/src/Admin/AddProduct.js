@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Link,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import * as notify from "../utils/notify.js"
 
 export default function AddProduct() {
     const [title,setTitle] = useState("");
@@ -24,20 +24,13 @@ export default function AddProduct() {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
-        toast.success("Record Added Succesfully", {
-          position: toast.POSITION.TOP_CENTER
-        },{
-          icon: "🚀"
-        });
+        notify.success("Added")
       })
       .catch((error) => {
-        toast.error(error.toString(), {
-          position: toast.POSITION.TOP_CENTER
-        });
+        notify.error(error)
         console.error('Error:', error);
       });
   }
-
   return (<>
     <form onSubmit={handleSubmit} className="shadow-xl mx-auto w-[300px]  p-[30px] mt-[40px] rounded-md">
       <h1 className="text-[30px] text-center mb-[20px]">Add Product</h1>

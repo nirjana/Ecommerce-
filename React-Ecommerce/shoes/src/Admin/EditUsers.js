@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { ToastContainer} from 'react-toastify';
+import * as notify from "../utils/notify.js"
 
 export default function EditUser() {
   const [inputs, setInputs] = useState({});
@@ -26,13 +28,16 @@ export default function EditUser() {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
+        notify.success("edited")
       })
       .catch((error) => {
+        notify.error(error)
         console.error('Error:', error);
       });
   }
 
   return (
+    <>
     <form onSubmit={handleSubmit}>
       <div>
       <input 
@@ -63,5 +68,7 @@ export default function EditUser() {
         </div>
         <input type="submit" />
     </form>
+        <ToastContainer autoClose={4000}/>
+        </>
   )
 }
