@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
-import { Footer } from './Footer';
 import { ToastContainer } from 'react-toastify';
 import * as notify from "../utils/notify.js"
+import authHeader from '../authentication/authHeader.js';
 
 const Login = () => {
   const [username,setUsername] =useState("");
   const [password,setPassword] =useState("");
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("token"));
+  console.log("user yei ho",user)
   const handleSubmit = (event) => {
     event.preventDefault();
     fetch(`${process.env.REACT_APP_API_URL}/userLogin`, {
@@ -19,7 +21,6 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Success:', data.data.token);
         if (data.data.user) {
           console.log('bhitra:', data);
           localStorage.setItem("user", JSON.stringify(data.data.user));

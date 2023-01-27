@@ -14,7 +14,7 @@ import UserLogin from "./Component/userLogin";
 import UserRegister from "./Component/userRegister";
 import Products from './Component/Products';
 import { Footer } from './Component/Footer';
-
+import * as Sentry from "@sentry/react";
 
 function App() {
   return (
@@ -40,4 +40,4 @@ function App() {
   );
 }
 
-export default App;
+export default Sentry.withProfiler(App);

@@ -29,7 +29,7 @@ const DetailProduct = () => {
         <div className='product flex flex-row '> 
         <img src={product.images} alt="img" className='h-[330px] w-[330px] inline-block'/>
         <div className='description ml-[20px]'>
-            <h1 className='text-[40px]'>{product.title}</h1>
+            <h1 className='text-[40px]'>{product.name}</h1>
             <p>{product.description}</p>
             <p className='text-orange-500'>Rs.{product.price}</p>
             <div className="buttons">

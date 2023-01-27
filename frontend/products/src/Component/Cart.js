@@ -20,7 +20,8 @@ const Cart = () => {
         <Link to={`products/${item._id}`}>
         <div key={item.id} className="card h-[373] w-[234px] inline-block text-center shadow-xl m-[20px] hover:mt-[-0.5px]">
           <img src={item.images} alt ={item.id+"img"}  className="p-[10px] h-[233px] w-[233px]"/>
-          <p className='p-[10px] text-orange-500'>{item.title}{item.cartQuantity}</p>
+          <span className='p-[10px] text-orange-500'>{item.name}</span>
+          <span className='p-[10px] text-orange-500 text-end'>({item.cartQuantity})</span>
           <p className='pb-[10px]'>Rs.{item.price}</p>
         </div>
         </Link>

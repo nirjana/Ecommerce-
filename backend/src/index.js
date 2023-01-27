@@ -6,7 +6,6 @@ import router from "./routes.js";
 import {connectDatabase} from "./database/connection.js"
 import errorHandler from './middleware/errorHandler.js';
 
-
 const app = express()
 
 dotenv.config({path : '../.env'});

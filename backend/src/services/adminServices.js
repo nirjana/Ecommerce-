@@ -6,8 +6,8 @@ import { hash, compare, createToken } from '../utils/crypt.js';
 
 export async function saveAdmin(data) {
     const { id ,name,username,address,password,email} =data;
-
-    const existingUser = await new Admin().findByParams(data);
+    console.log("eta data",{name:name ,username:username})
+    const existingUser = await new Admin().findByParams({name:name ,username:username});
     console.log("esi",existingUser)
     if (existingUser) {
         console.log("user already exist")

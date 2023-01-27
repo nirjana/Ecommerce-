@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
-import { Footer } from './Footer';
-import { Navbar } from './Navbar';
-import axios from "axios";
 import { ToastContainer } from 'react-toastify';
 import * as notify from "../utils/notify.js"
+import * as Sentry from "@sentry/react";
+const user = JSON.parse(localStorage.getItem("token"));
 
 const Login = () => {
   const [username,setUsername] =useState("");
@@ -16,6 +15,9 @@ const Login = () => {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
       body: JSON.stringify({username:username,password:password}),
     })
@@ -25,6 +27,7 @@ const Login = () => {
         if (data.data.token) {
           console.log('bhitra:', data);
           localStorage.setItem("user", JSON.stringify(data.data.user));
+          localStorage.setItem("token", JSON.stringify(data.data.token));
           notify.success("Login")
           navigate("/")
           window.location.reload();
@@ -33,6 +36,7 @@ const Login = () => {
       .catch((error) => {
         notify.error(error)
         console.error('Error:', error);
+        Sentry.captureException(error)
       });
   }
   return (
@@ -51,4 +55,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Sentry.withProfiler(Login);

@@ -6,6 +6,8 @@ import * as productController from "./controllers/productController.js";
 import addAdminSchema from "./schemas/addAdmin.js"
 import { validateBody } from './middleware/validation.js';
 import authenticate from './middleware/authenticate.js';
+import jwt from 'jsonwebtoken'
+import { expressjwt as ejwt } from "express-jwt"
 import * as dotenv from "dotenv";
 dotenv.config({path : '../.env'});
 
@@ -43,9 +45,10 @@ router.get("/products", productController.getAllProducts);
 router.post(
     "/products",
     // userController.loginWithCookie,
+    authenticate,
     productController.createProduct
   );
-  router.get("/products/:id", productController.getProductDetails);
+  router.get("/products/:id",productController.getProductDetails);
 
   router.put("/products/:id", productController.updateProduct);
 

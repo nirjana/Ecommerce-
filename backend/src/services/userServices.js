@@ -98,13 +98,13 @@ export async function login(params) {
    
       throw new Boom.badRequest('Invalid credentials');
     }
-    const isPasswordMatched = await existingUser.comparePassword(password); //to check the input password with database ma vayeko password
-    console.log(isPasswordMatched + `PasswordMatched`);
+    // const isPasswordMatched = await existingUser.comparePassword(password); //to check the input password with database ma vayeko password
+    // console.log(isPasswordMatched + `PasswordMatched`);
  
-    if (!isPasswordMatched) {
-      return {
-        message: "Invalid email or (password)",
-      };}
+    // if (!isPasswordMatched) {
+    //   return {
+    //     message: "Invalid email or (password)",
+    //   };}
       
     const user = {
       id: existingUser._id,

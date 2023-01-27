@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import { useState, useEffect } from "react";
 import { authService } from "../authentication/authentication";
+import img from "../image/e.png"
 
 export const Navbar = () => {
     const cartCount =useSelector(state => {
@@ -25,7 +26,9 @@ export const Navbar = () => {
   };  
     return <>
     <div className="nav flex flex-wrap justify-between">
-        <div className="flex justify-start inline-block">logo</div>
+        <div className="flex justify-start inline-block">
+        <img src={img} alt="hero img" className='h-[70px] w-[70px] pt-[5px]'/>
+        </div>
         <ul className="inline-block bg-black flex text-white space-x-4 justify-end py-[20px]">
             <li> <Link to = "/">Home</Link></li>
             <li> <Link to ="/">Contact</Link></li>
@@ -57,7 +60,7 @@ export const Navbar = () => {
                                                Login <i className="fa fa-user-plus"></i>
                                               <div class="dropdown-content">
                                                   <a href="/login">Admin </a>
-                                                   <a href="/customerlogin">Customer </a>
+                                                   <a href="/userLogin">Customer </a>
                                                    </div>
                
                                                </li>
