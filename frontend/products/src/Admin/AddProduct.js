@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import authHeader from '../authentication/authHeader.js';
 import * as notify from "../utils/notify.js"
 
 export default function AddProduct() {
@@ -19,7 +18,11 @@ export default function AddProduct() {
     event.preventDefault();
     fetch(`${process.env.REACT_APP_API_URL}/products`, {
       method: 'POST', // or 'PUT'
-      headers: authHeader(),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${ user.token}`
+        
+      },
       body: JSON.stringify({name:title,description:description,price:price,stock:stock,category:category,images:image}),
     })
       .then((response) => response.json())

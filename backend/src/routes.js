@@ -45,7 +45,7 @@ router.get("/products", productController.getAllProducts);
 router.post(
     "/products",
     // userController.loginWithCookie,
-    authenticate,
+    // authenticate,
     productController.createProduct
   );
   router.get("/products/:id",productController.getProductDetails);
