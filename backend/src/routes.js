@@ -31,6 +31,7 @@ router.delete('/:adminIdentifier',adminController.deleteAdmin)
 router.post('/userLogin',userController.login)
 
 router.post('/userRegister',userController.registerUser)
+router.post("/userRegister/checkout", userController.registerUser);
 
 router.get("/users", userController.getAllUsers);
 
